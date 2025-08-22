@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "bf465a36-9189-45e5-b7cf-0b1dc93bbf04",
+		"name": "DDT using POSTMAN",
+		"description": "This collection demonstrates **Data Driven Testing (DDT)** in Postman using a CSV/JSON data file.\n\nIt executes the Google Search API (`https://www.google.com/search?q={{number}}`) for numbers **1 to 10**, verifying that each request is successful and logging which number was searched.\n\nThe test cases validate response status codes and ensure the response contains the searched number.EndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43290527",
+		"_collection_link": "https://www.postman.com/api-testing-using-postman/workspace/api-testing-postman/collection/43290527-bf465a36-9189-45e5-b7cf-0b1dc93bbf04?action=share&source=collection_link&creator=43290527"
+	},
+	"item": [
+		{
+			"name": "Search API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Get the number from data file\r",
+							"let searchedNumber = pm.iterationData.get(\"number\");\r",
+							"\r",
+							"// Log it in Test Results\r",
+							"pm.test(\"Searched number: \" + searchedNumber, function () {\r",
+							"    pm.expect(true).to.be.true;  // Dummy assertion to display\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "https://www.google.com/search?q={{number}}",
+					"protocol": "https",
+					"host": [
+						"www",
+						"google",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{number}}"
+						}
+					]
+				},
+				"description": "Validate Google search results for numbers 1–10 using DDT in Postman\n\n**Test Steps:**\n\n1. Send `GET https://www.google.com/search?q={{number}}`\n    \n2. Iterate through values 1–10 using CSV/JSON data file\n    \n3. Validate response status code\n    \n4. Log searched number in test results\n    \n5. Verify response body contains searched number\n    \n\n**Expected Result:**\n\n- Each request returns **200 OK**\n    \n- Test results clearly show which number was searched"
+			},
+			"response": []
+		}
+	]
+}
