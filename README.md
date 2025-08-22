@@ -17,7 +17,7 @@ The test runs a search for numbers **1 to 10** dynamically using a JSON data fil
 
 ## 📝 Test Case
 
-**Test Case ID:** `TC_Google_Search_001` 
+**Test Case ID:** `TC_Google_Search_001`     
 **Title:** Validate Google search results for numbers 1–10 using DDT in Postman
 
 **Precondition:**
